@@ -8,11 +8,10 @@ contract Mecenatge {
     uint public fundingGoal; uint public amountRaised; uint public deadline; uint public price;
     token public tokenReward;
     mapping(uint256 => Funder) public funders;
-    bool fundingGoalReached = false;
     event GoalReached(address beneficiary, uint amountRaised);
     event FundTransfer(address backer, uint amount, bool isContribution);
     bool crowdsaleClosed = false;
-	uint public numFunders;
+    uint public numFunders;
 
     /* data structure to hold information about campaign contributors */
     struct Funder {
@@ -51,15 +50,14 @@ contract Mecenatge {
     /* checks if the goal or time limit has been reached and ends the campaign */
     function checkGoalReached() afterDeadline {
         if (amountRaised >= fundingGoal){
-            fundingGoalReached = true;
-			if(beneficiary.send(amountRaised)){
-            FundTransfer(beneficiary, amountRaised, false);}
-			amountRaised = 0;
+		if(beneficiary.send(amountRaised)){
+            		FundTransfer(beneficiary, amountRaised, false);}
+		amountRaised = 0;
         }else{
-			  for (uint i = 0; i < numFunders; ++i) {
-              if(funders[i].addr.send(funders[i].amount)){  
-              FundTransfer(funders[i].addr, funders[i].amount, false);}
-            } 
+		for (uint i = 0; i < numFunders; ++i) {
+              		if(funders[i].addr.send(funders[i].amount)){  
+              			FundTransfer(funders[i].addr, funders[i].amount, false);}
+            		} 
 		}
         crowdsaleClosed = true;
     }
