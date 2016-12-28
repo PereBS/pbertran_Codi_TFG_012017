@@ -8,7 +8,6 @@ contract Mecenatge {
     uint public fundingGoal; uint public amountRaised; uint public deadline; uint public price;
     token public tokenReward;
     mapping(uint256 => Funder) public funders;
-    event GoalReached(address beneficiary, uint amountRaised);
     event FundTransfer(address backer, uint amount, bool isContribution);
     bool crowdsaleClosed = false;
     uint public numFunders;
