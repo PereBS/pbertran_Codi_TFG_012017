@@ -1,4 +1,4 @@
-pragma solidity ^0.4.2;
+pragma solidity ^0.4.6;
 contract Entrades{
     /* Public variables of the token */
     string public standard = 'Token 0.1';
