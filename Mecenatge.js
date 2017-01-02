@@ -1,6 +1,5 @@
-//MECENATGE
 
-pragma solidity ^0.4.2;
+pragma solidity ^0.4.6;
 contract token { function transfer(address receiver, uint amount){  } }
 
 contract Mecenatge {
@@ -31,7 +30,7 @@ contract Mecenatge {
     }
 
     /* The function without name is the default function that is called whenever anyone sends funds to a contract */
-    function ()  {
+    function () payable  {
         if (crowdsaleClosed) throw;
         uint amount = msg.value;
         Funder c= funders[numFunders++];
